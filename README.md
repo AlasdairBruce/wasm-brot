@@ -1,7 +1,5 @@
 ## About
 
-[**📚 Read this template tutorial! 📚**][template-docs]
-
 This project was created based on the `wasm-pack` [tutorials][tutorials] and specifically following along with the Game of Life [tutorial][gol-tutorial].
 
 [tutorials]: https://rustwasm.github.io/docs/wasm-pack/tutorials/index.html
