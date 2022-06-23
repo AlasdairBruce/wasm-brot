@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello wasm-pack!</title>
+    <style>
+      * {
+          font-family: Arial !important;
+      }
+      
+      .row {
+          display: flex;
+      }
+      .col {
+          flex: 50%;
+      }
+      #progress {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          background-color: black;
+          opacity: 0.3;
+          cursor: progress;
+          z-index: 1000;
+          display: none;
+      }
+      #canvases {
+          position: relative;
+          border: 2px solid grey;
+      }
+      #canvas {
+          z-index: 0;
+      }
+      #canvasSelect {
+          z-index: 1;
+          position: absolute;
+          left: 0;
+          top: 0;
+      }
+      #controls {
+          padding-left: 10px;
+      }
+
+      #view {
+          border: 1px dotted gray;
+          padding: 2px;
+          margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>This page contains webassembly and javascript content, please enable javascript in your browser.</noscript>
+    <script src="./bootstrap.js"></script>
+    <h3>Simple Mandelbrot Viewer Using WebAssembly and Rust</h3>
+    <div class="row">
+      <div class="col">
+        <div id="canvases">
+          <canvas id="canvas"></canvas>
+          <canvas id="canvasSelect"></canvas>
+        </div>
+      </div>
+      <div class="col">
+        <div id="controls">
+          <div class="row">
+            <div class="col">
+              <label for="iterations">Iterations: </label>
+            </div>
+            <div class="col">
+              <input type="range" min="1" max="1000" value="100" id="iterations">
+              <label id="iterationsLabel" for="iterations">100</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="coloring">Coloring:</label>
+            </div>
+            <div class="col">
+              <select id="coloring">
+                <option value="default">Default</option>
+                <option value="greenish" selected>Green</option>
+                <option value="redish">Red</option>
+                <option value="blueish">Blue</option>
+                <option value="greeny">Ghost Green</option>
+                <option value="redy">Ghost Red</option>
+                <option value="bluey">Ghost Blue</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label>View:</label>
+            </div>
+          </div>
+          <div id="view">
+            <div class="row">
+              <div class="col"><label for="viewDepth">Depth:</label></div>
+              <div class="col"><label id="viewDepth"></label></div>
+            </div>
+            <div class="row">
+              <div class="col"><label for="viewPrecision">Precision:</label></div>
+              <div class="col"><label id="viewPrecision"></label></div>
+            </div>
+            <div class="row">
+              <div class="col"><label for="x0">x0:</label></div>
+              <div class="col"><label id="x0"></label></div>
+            </div>
+            <div class="row">
+              <div class="col"><label for="y0">y0:</label></div>
+              <div class="col"><label id="y0"></label></div>
+            </div>
+            <div class="row">
+              <div class="col"><label for="x1">x1:</label></div>
+              <div class="col"><label id="x1"></label></div>
+            </div>
+            <div class="row">
+              <div class="col"><label for="y1">y1:</label></div>
+              <div class="col"><label id="y1"></label></div>
+            </div>
+          </div>
+          <div class="row" id="navigate">
+            <button id="nav-reset">Reset</button>
+            <button id="nav-pop">&laquo; Back</button>
+            <button id="nav-push">Forward &raquo;</button>
+          </div>
+        </div>
+      </div>
+      <div id="progress"></div>
+  </body>
+</html>
