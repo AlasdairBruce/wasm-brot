@@ -29,11 +29,15 @@ cargo generate --git https://github.com/rustwasm/wasm-pack-template.git --name w
 
 [Learn more about `cargo generate` here.](https://github.com/ashleygwilliams/cargo-generate)
 
-### Build
+### Build, Test, Run
+
+A simple [Makefile](./Makefile) explains the basic commands for each of the steps. It also provides a simple `run` target to let you fire up the server immediately at which point you can interact with it at [http://localhost:8080](http://localhost:8080).
 
 ```
-wasm-pack build
+make run
 ```
+
+Tests are on the TODO list.
 
 ## 🔋 Batteries Included
 
