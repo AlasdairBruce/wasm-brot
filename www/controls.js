@@ -99,7 +99,5 @@ export class Controls {
     this.view.querySelector("#y0").innerHTML = top.y0;
     this.view.querySelector("#x1").innerHTML = top.x1;
     this.view.querySelector("#y1").innerHTML = top.y1;
-
-    this.backRow.style.display = (this.viewStack.length <= 1 && this.popped.length == 0) ? 'none' : 'block';
   }
 }
