@@ -50,15 +50,18 @@ export class RectSelector {
   }
 
   mouseup(e) {
+    var ex = parseInt(e.clientX - this.offset.left);
+    var ey = parseInt(e.clientY - this.offset.top);
     this.canvas.style.cursor = "default";
-    if (this.isDown || (this.isDrawing && this.autoSelect)) {
+    if (this.isDown && ! this.isDrawing && this.startX < 0) {
+      this.onSelect(ex, ey);
+    } else if (this.isDown || (this.isDrawing && this.autoSelect)) {
       this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-      var ex = parseInt(e.clientX - this.offset.left);
-      var ey = parseInt(e.clientY - this.offset.top);
       var mnx = Math.min(this.startX, this.mouseX);
       var mxx = Math.max(this.startX, this.mouseX);
       var mny = Math.min(this.startY, this.mouseY);
       var mxy = Math.max(this.startY, this.mouseY);
+      this.startX = this.startY = this.mouseX = this.mouseY = -1;
       if ((this.isDrawing && this.autoSelect) || (ex > mnx && ex < mxx && ey > mny && ey < mxy)) {
         this.onSelect(mnx, mny, mxx, mxy);
       }

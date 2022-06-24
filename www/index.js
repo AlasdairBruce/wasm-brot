@@ -4,16 +4,23 @@ import { memory } from "wasm-brot/wasm_brot_bg";
 
 import { Controls, Bounds } from './controls.js';
 import { RectSelector } from './selector.js';
+import { Example } from './example.js';
 
 var controls = new Controls(document.getElementById('controls'), new Bounds(mandel_bounds(-2.0, -1.0, 1.0, 1.0)), function (c) {
   schedule(() => { recalc(); });
 });
 
+var example = new Example(document.getElementById('example'));
+
 var canvases = document.getElementById('canvases');
 var canvas = document.getElementById('canvas');
 var canvasSelect = document.getElementById('canvasSelect');
 new RectSelector(canvasSelect, function (x0, y0, x1, y1) {
-  schedule(() => { zoom(x0, y0, x1, y1) });
+  if (x1 !== undefined) {
+    schedule(() => { zoom(x0, y0, x1, y1) });
+  } else {
+    pick(x0, y0);
+  }
 });
 
 function toMandelBounds(b) {
@@ -29,6 +36,11 @@ function schedule(fn) {
     fn();
     // progress.style.display = 'none';
   }, 1);
+}
+
+function pick(x0, y0) {
+  var b = mandel.zoom(x0, y0, x0, y0);
+  example.show(b.x0, b.y0);
 }
 
 function zoom(x0, y0, x1, y1) {
